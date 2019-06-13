@@ -70,11 +70,21 @@ public class MovieController {
     @ApiOperation(value = "Gets the details of the movie based on the supplied id",
             response = MovieDto.class)
     @GetMapping(value = "/{id}")
-    public ResponseEntity<MovieDto> details(@PathVariable(required = false) Integer id)
+    public ResponseEntity<MovieDto> details(@PathVariable(required = true) Integer id)
     {
-        MovieDto movieDto = this.movieService.getMovie(id);
+        MovieDto movieDto = this.movieService.getMovieDtoFromMovie(this.movieService.getMovie(id));
 
         return new ResponseEntity<MovieDto>(movieDto, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Delete the movie based on the supplied id",
+            response = MovieDto.class)
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity delete(@PathVariable(required = true) Integer id)
+    {
+        this.movieService.deleteMovie(id);
+
+        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
 }

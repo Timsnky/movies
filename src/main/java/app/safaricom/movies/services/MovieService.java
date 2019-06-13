@@ -79,4 +79,17 @@ public class MovieService {
     {
         return this.movieRepository.existsById(id);
     }
+
+    public Movie getMovie(Integer id)
+    {
+        return this.movieRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Movie record was not found for parameter : Id = " + id)
+                );
+    }
+
+    public void deleteMovie(Integer id)
+    {
+        this.movieRepository.delete(this.getMovie(id));
+    }
 }
