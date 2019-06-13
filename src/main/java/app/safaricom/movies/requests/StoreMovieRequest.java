@@ -24,4 +24,7 @@ public class StoreMovieRequest {
 
     @NotNull(message = "Watched flag should not be null")
     private Integer watched;
+
+    @NotNull(message = "User should not be null")
+    private Integer user;
 }

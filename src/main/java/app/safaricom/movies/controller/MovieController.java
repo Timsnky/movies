@@ -13,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -35,9 +37,11 @@ public class MovieController {
     @ApiOperation(value = "Gets a list of all movies",
             response = MovieDto.class,
             responseContainer = "List", authorizations = {@Authorization(value = "ROLE_User")})
-    public ResponseEntity<List> index()
+    public ResponseEntity<List> index(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                      @RequestParam(value = "limit", required = false, defaultValue = "2") int limit)
     {
-        List<MovieDto> movieDtos = this.movieService.getAllMovies();
+
+        List<MovieDto> movieDtos = this.movieService.getAllMovies(page, limit);
 
         return  new ResponseEntity<List>(movieDtos, HttpStatus.OK);
     }
@@ -87,4 +91,13 @@ public class MovieController {
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
+    @GetMapping(value = {"/watched", "/watched/{watched}"})
+    public ResponseEntity<List> getWatched(@PathVariable(required = false) Integer watched, HttpServletRequest request)
+    {
+        Principal principal = request.getUserPrincipal();
+
+        List<MovieDto> movieDtos = this.movieService.getWatchedMovies(watched, principal);
+
+        return  new ResponseEntity<List>(movieDtos, HttpStatus.OK);
+    }
 }

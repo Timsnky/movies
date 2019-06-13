@@ -20,4 +20,6 @@ public class MovieDto {
     private Integer watched;
 
     private String watchedName;
+
+    private MovieUserDto user;
 }

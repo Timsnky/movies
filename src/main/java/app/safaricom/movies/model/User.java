@@ -29,6 +29,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "user")
+    private List<Movie> movies;
+
     @Override
     public String toString() {
         return "User{" +
@@ -37,5 +40,10 @@ public class User {
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public String getFullname()
+    {
+        return this.firstname + " " + this.lastname;
     }
 }

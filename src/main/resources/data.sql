@@ -19,3 +19,12 @@ VALUES
 INSERT INTO `user_roles` (`user_id`, `roles_id`)
 VALUES
 	(1, 3);
+
+INSERT INTO `movie` (`id`, `description`, `recommendation`, `title`, `watched`, `rating_id`, `user_id`)
+VALUES
+	(1, 'Avengers Description', 'Highly recomended', 'Avengers', 1, 1, 1),
+	(2, 'Avengers Description1', 'Medium recomended', 'Avengers2', 0, 2, 1),
+	(3, 'Avengers Description2', 'Lowly recomended', 'Avengers3', 1, 3, 1),
+	(4, 'Avengers Description4', 'Lowly recomended', 'Avengers4', 0, 4, 1),
+	(5, 'Avengers Description5', 'Lowly recomended', 'Avengers5', 1, 5, 1);
+

@@ -27,6 +27,10 @@ public class Movie {
 
     private Integer watched;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -36,6 +40,7 @@ public class Movie {
                 ", recommendation='" + recommendation + '\'' +
                 ", rating=" + rating.getRating() +
                 ", watched=" + this.isWatched() +
+                ", user=" + user.getFullname() +
                 '}';
     }
 
