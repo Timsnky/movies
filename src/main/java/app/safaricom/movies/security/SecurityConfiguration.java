@@ -45,14 +45,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.userRepository))
                 .authorizeRequests()
-                .antMatchers("/login", "/api/signup", "/actuator/health").permitAll()
+                .antMatchers("/login", "/api/signup", "/actuator/**").permitAll()
                 .anyRequest().authenticated();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/webjars/**", "/swagger-ui.html/**", "/v2/api-docs",
-                "/swagger-resources/**", "/swagger.json");
+                "/swagger-resources/**", "/swagger.json", "/target/site/jacoco/index.html");
     }
 
     @Bean
