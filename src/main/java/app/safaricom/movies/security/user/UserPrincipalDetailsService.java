@@ -21,6 +21,10 @@ public class UserPrincipalDetailsService implements UserDetailsService {
 
         User user = this.userRepository.findByEmail(email);
 
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid user email/password combination");
+        }
+
         return new UserPrincipal(user);
     }
 }

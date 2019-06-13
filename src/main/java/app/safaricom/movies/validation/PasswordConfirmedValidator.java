@@ -16,7 +16,15 @@ public class PasswordConfirmedValidator implements ConstraintValidator<PasswordC
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
         final SignupFormRequest formRequest = (SignupFormRequest) o;
 
-        boolean isValid = formRequest.getPassword().equals(formRequest.getPassword_confirmation());
+        String password = formRequest.getPassword();
+
+        String passwordConfirmation = formRequest.getPassword_confirmation();
+
+        boolean isValid = false;
+
+        if (password != null && passwordConfirmation != null) {
+            isValid = password.equals(passwordConfirmation);
+        }
 
         if (! isValid) {
             constraintValidatorContext.disableDefaultConstraintViolation();

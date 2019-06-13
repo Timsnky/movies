@@ -2,14 +2,18 @@ package app.safaricom.movies.security.jwt;
 
 import app.safaricom.movies.dto.LoginDto;
 import app.safaricom.movies.exception.custom.CustomSimpleException;
+import app.safaricom.movies.repository.UserRepository;
 import app.safaricom.movies.security.user.UserPrincipal;
+import app.safaricom.movies.services.UserService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
