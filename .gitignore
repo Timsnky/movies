@@ -28,3 +28,6 @@ application.properties
 
 ### VS Code ###
 .vscode/
+
+### Docker ###
+/docker/files/*.jar

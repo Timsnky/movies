@@ -1,0 +1,3 @@
+FROM alpine:edge
+MAINTAINER timsnky@gmail.com
+RUN apk add --no-cache openjdk8
